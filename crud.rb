@@ -29,4 +29,14 @@ def create_secure_password(list_of_users)
     end
 end
 
-puts create_secure_password(users)
+new_users = create_secure_password(users)
+puts new_users
+
+def authenticate_users(username, password, list_of_users)
+    list_of_users.each do |user_record|
+        if user_record[:username] == username && verify_hash_digest(user_record[:password]) == password
+            return user_record
+        end
+    end
+end
+
